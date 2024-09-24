@@ -1,0 +1,13 @@
+---
+title: "Tidy Data"
+author: "Fang Wang"
+date: "2024-09-24"
+output: github_document
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, echo=FALSE, message = FALSE}
+setwd("/Users/fangwang/Downloads/P8105 Data Science I/Lecture 7/Tidy Data")
+library(tidyverse)
+```
