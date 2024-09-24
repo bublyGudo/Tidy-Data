@@ -83,3 +83,30 @@ analysis_df |>
 |:----------|----:|-----:|
 | treatment | 4.0 |   10 |
 | control   | 4.2 |    5 |
+
+## Bind tables.
+
+``` r
+fellowship_ring =
+  read_excel("./data/LotR_Words.xlsx", range = "B3:D6")|>
+  mutate (movie = "fellowship_ring")
+
+two_towers =
+  read_excel("./data/LotR_Words.xlsx", range = "F3:H6")|>
+  mutate (movie = "two_tower")
+
+return_king =
+  read_excel("./data/LotR_Words.xlsx", range = "J3:L6")|>
+  mutate (movie = "return_king")
+
+lotr_df = 
+  bind_rows (fellowship_ring,two_towers,return_king) |> 
+  janitor::clean_names() |> 
+  pivot_longer (
+    cols = female:male,
+    names_to = "sex",
+    values_to =  "words"
+  ) |> 
+  relocate (movie) |> 
+  mutate (race = str_to_lower(race)) # to change values to lower case.
+```
